@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment, useState } from 'react';
+import Header from './components/Header/Header';
+
+import IngrediantHeader from './components/Ingrediants/IngrediantHeader';
 
 function App() {
+  const [isClicked, setIsClicked] = useState(false);
+  function clickHandler(value) {
+    setIsClicked(value);
+  }
+  function prevPageHandler(value) {
+    setIsClicked(value);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      {!isClicked && <Header clickedValue={clickHandler} />}
+
+      {isClicked && <IngrediantHeader onPrevPage={prevPageHandler} />}
+    </Fragment>
   );
 }
 
